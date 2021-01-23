@@ -1,0 +1,17 @@
+{
+  "name": "testeelectron",
+  "version": "1.0.0",
+  "description": "teste de electron klkkkkkkk",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --watch * --exec electron ./src/main.js"
+  },
+  "keywords": [],
+  "author": "Pedrao",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^11.2.1",
+    "nodemon": "^2.0.7"
+  }
+}
