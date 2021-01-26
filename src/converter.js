@@ -4,7 +4,7 @@ const { PythonShell } = require('python-shell')
 const btnConverter = document.getElementById('converter');
 
 btnConverter.addEventListener('click', () => {
-    PythonShell.run('./src/csvmidi.py', null, (err) => {
+    PythonShell.run('./src/scripts/csvmidi.py', null, (err) => {
         if (err) throw err;
         console.log('finished');
     });
