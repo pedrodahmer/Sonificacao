@@ -1,4 +1,8 @@
-const { app, BrowserWindow } = require('electron')
+const { 
+  app, 
+  BrowserWindow, 
+  ipcMain, 
+  dialog } = require('electron')
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -25,3 +29,8 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
+ipcMain.on('ola-mundo', (event) => {
+  dialog.showErrorBox('pedrao', 'pedrao')
+})
+

@@ -1,20 +1,13 @@
-var py = require('python-shell')
+const { ipcRenderer } = require('electron')
+const { PythonShell } = require('python-shell')
 
-document.getElementById("converter").addEventListener('click', async () => {
-    sendToPython()
+const btnConverter = document.getElementById('converter');
+
+btnConverter.addEventListener('click', () => {
+    PythonShell.run('./src/csvmidi.py', null, (err) => {
+        if (err) throw err;
+        console.log('finished');
+    });
+    
+    ipcRenderer.send('oedrao')
 })
-
-function sendToPython() {
-
-  let options = {
-    mode: 'text',
-    args: [input.value]
-  }
-
-  py.run('/scripts/hello.py', options, function(err, results) {
-    if (err) throw err
-    console.log('Hello from Python!')
-    console.log('Results: ', results)
-  })
-
-}
