@@ -1,0 +1,34 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 100px;
+}
+
+#title {
+  font-size: 30px;
+}
+
+p {
+  color: darkgrey;
+}
+
+#converter {
+  height: 50px;
+  width: 100px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  transition: background-color 0.25s;
+}
+
+#converter:hover {
+  background-color: lightgrey;
+  cursor: pointer;
+}
