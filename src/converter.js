@@ -1,9 +1,20 @@
-const { ipcRenderer } = require('electron')
-import {PythonShell} from 'python-shell';
+var py = require('python-shell')
 
 document.getElementById("converter").addEventListener('click', async () => {
-    PythonShell.run('/scripts/csvmidi.py', null, function (err) {
-        if (err) throw err;
-        console.log('pedrao');
-      });
+    sendToPython()
 })
+
+function sendToPython() {
+
+  let options = {
+    mode: 'text',
+    args: [input.value]
+  }
+
+  py.run('/scripts/hello.py', options, function(err, results) {
+    if (err) throw err
+    console.log('Hello from Python!')
+    console.log('Results: ', results)
+  })
+
+}
