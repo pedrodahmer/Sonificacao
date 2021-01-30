@@ -7,7 +7,9 @@ btnConverter.addEventListener('click', () => {
     PythonShell.run('./src/scripts/csvmidi.py', null, (err) => {
         if (err) throw err;
         console.log('finished');
+
     });
-    
-    ipcRenderer.send('oedrao')
+
+    // ipcRenderer.send('sucesso')
 })
+

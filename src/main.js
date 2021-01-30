@@ -30,7 +30,7 @@ app.on('activate', () => {
   }
 })
 
-ipcMain.on('ola-mundo', (event) => {
-  dialog.showErrorBox('pedrao', 'pedrao')
+ipcMain.on('sucesso', (event) => {
+  dialog.showMessageBox(null, 'pedrao')
 })
 
