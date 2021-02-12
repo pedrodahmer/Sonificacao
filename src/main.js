@@ -2,7 +2,10 @@ const {
   app, 
   BrowserWindow, 
   ipcMain, 
-  dialog } = require('electron')
+  dialog,
+  Menu,
+  MenuItem
+} = require('electron')
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -15,6 +18,23 @@ function createWindow () {
 
   win.loadFile('index.html')
 }
+
+const template = [
+  {
+    label: 'File',
+    submenu: [
+      { role: 'quit' },
+      { role: 'redo' },
+      { type: 'separator' },
+      { role: 'cut' },
+      { role: 'copy' },
+      { role: 'paste' },
+    ]
+  }
+];
+
+const menu = Menu.buildFromTemplate(template)
+Menu.setApplicationMenu(menu)
 
 app.whenReady().then(createWindow)
 
@@ -32,5 +52,9 @@ app.on('activate', () => {
 
 ipcMain.on('sucesso', (event) => {
   dialog.showMessageBox(null, 'pedrao')
+})
+
+app.on('Sobre', () => {
+  window.location.href("./pages/Sobre/sobre.html")
 })
 
