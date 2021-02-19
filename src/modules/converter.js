@@ -1,4 +1,4 @@
-const { ipcRenderer } = require('electron')
+// const { ipcRenderer } = require('electron')
 const { PythonShell } = require('python-shell')
 
 const btnConverter = document.getElementById('converter');
