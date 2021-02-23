@@ -7,12 +7,14 @@ const {
   MenuItem
 } = require('electron')
 
+require( 'electron-reload')(__dirname)
+
 function createWindow () {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
     }
   })
 
@@ -69,6 +71,10 @@ const template = [
         click: (MenuItem, BrowserWindow, event) => {
           BrowserWindow.loadFile('./Pages/Ajuda/ajuda.html')
         }
+      },
+      {
+        label: 'DevTools',
+        role: 'toggleDevTools'
       }
     ]
   }

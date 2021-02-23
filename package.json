@@ -1,21 +1,20 @@
 {
-  "name": "testeelectron",
+  "name": "Sonificacao",
   "version": "1.0.0",
-  "description": "teste de electron klkkkkkkk",
-  "main": "main.js",
+  "description": "Sonificacao de Dados - Projeto ESW II",
+  "main": "./src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --watch * --exec electron ./src/main.js"
+    "start": "electron ./src/main.js"
   },
   "keywords": [],
   "author": "Pedrao",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^11.2.1",
-    "nodemon": "^2.0.7"
+    "electron": "^11.2.1"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
+    "electron-reload": "^1.5.0",
     "python-shell": "^2.0.3"
   }
 }

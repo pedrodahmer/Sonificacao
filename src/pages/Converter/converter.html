@@ -12,18 +12,49 @@
     <link rel="stylesheet" href="./converter.css">
 </head>
 <body style="background: white;">
+
     <div class="container">        
-        <h1 id="title">Converter um novo arquivo</h1>
+        <h1 id="title"> <img src="../../assets/icons/convert-icon.svg" alt=""> Converter um novo arquivo </h1>
 
-        <button class="btn" id="converter">
-            Converter
-        </button>
-    </div>
+        <form action="" method="">
+            <div>
+                <input type="text" name="" id="caminho">
+                <button class="btn"> Escolher o arquivo </button>
+            </div>
 
-    <div class="rodape">
-        <a href="../../index.html"><img src="../../assets/icons/arrow-left-solid.svg" alt="" class="icon-voltar"></a>
+            <p> Coluna da Altura </p> 
+            <div>
+                <input type="text" name="" id="altura">
+                <label for=""> Usar valores </label>
+                <img src="../../assets/icons/toggle-button.svg" alt="">
+            </div>
+
+            <p> Coluna da Intensidade </p> 
+            <div>
+                <input type="text" name="" id="intensidade">
+                <label for=""> Usar valores </label>
+                <img src="../../assets/icons/toggle-button.svg" alt="">
+            </div>
+
+            
+            <p> Coluna da Duração </p>
+            <div>
+                <input type="text" name="" id="duracao">
+                <label for=""> Usar valores </label>
+                <img src="../../assets/icons/toggle-button.svg" alt="">
+            </div>
+
+            <div id="rodape">
+                <a href="../../index.html"><img src="../../assets/icons/arrow-left-solid.svg" alt="" class="icon-voltar"></a>
+                
+                <button class="btn" id="converter">
+                    Converter
+                </button>
+            </div>
+        </form>
     </div>
 
     <script src="../../modules/converter.js"></script>
+
 </body>
 </html>

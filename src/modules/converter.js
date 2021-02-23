@@ -10,6 +10,6 @@ btnConverter.addEventListener('click', () => {
 
     });
 
-    // ipcRenderer.send('sucesso')
+    ipcRenderer.send('sucesso')
 })
 
