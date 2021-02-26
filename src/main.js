@@ -7,7 +7,7 @@ const {
   MenuItem
 } = require('electron')
 
-require( 'electron-reload')(__dirname)
+require('electron-reload')(__dirname)
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -101,3 +101,21 @@ ipcMain.on('sucesso', (event) => {
   dialog.showMessageBox(null, 'pedrao')
 })
 
+ipcMain.on('escolher-arquivo', async event => {
+  const result = await dialog.showOpenDialog({
+    title: 'Procurando arquivos CSV...',
+    buttonLabel: 'Abrir',
+    message: 'Mensagem',
+    properties: ['openFile'],
+    filters: [
+      {
+        name: 'Comma Separated Values',
+        extensions: ['csv']
+      }
+    ]
+  })
+  if(result) {
+    console.log(result.filePaths[0])
+    event.sender.send('arquivo-selecionado', result.filePaths[0])
+  }
+})

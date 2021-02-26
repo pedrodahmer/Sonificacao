@@ -18,22 +18,28 @@
 
         <form action="" method="">
             <div>
-                <input type="text" name="" id="caminho">
-                <button class="btn"> Escolher o arquivo </button>
+                <input type="text" name="" id="caminho" placeholder="Caminho do arquivo">
+                <button class="btn" id="btn-escolher-arquivo"> Escolher o arquivo </button>
             </div>
 
             <p> Coluna da Altura </p> 
             <div>
                 <input type="text" name="" id="altura">
                 <label for=""> Usar valores </label>
-                <img src="../../assets/icons/toggle-button.svg" alt="">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
             </div>
 
             <p> Coluna da Intensidade </p> 
             <div>
                 <input type="text" name="" id="intensidade">
                 <label for=""> Usar valores </label>
-                <img src="../../assets/icons/toggle-button.svg" alt="">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
             </div>
 
             
@@ -41,13 +47,16 @@
             <div>
                 <input type="text" name="" id="duracao">
                 <label for=""> Usar valores </label>
-                <img src="../../assets/icons/toggle-button.svg" alt="">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
             </div>
 
             <div id="rodape">
                 <a href="../../index.html"><img src="../../assets/icons/arrow-left-solid.svg" alt="" class="icon-voltar"></a>
                 
-                <button class="btn" id="converter">
+                <button class="btn" id="btn-converter">
                     Converter
                 </button>
             </div>
