@@ -7,7 +7,9 @@ const {
   MenuItem
 } = require('electron')
 
-require('electron-reload')(__dirname)
+const { PythonShell } = require('python-shell')
+
+// require('electron-reload')(__dirname)
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -97,9 +99,11 @@ app.on('activate', () => {
   }
 })
 
+/*
 ipcMain.on('sucesso', (event) => {
   dialog.showMessageBox(null, 'pedrao')
 })
+*/
 
 ipcMain.on('escolher-arquivo', async event => {
   const result = await dialog.showOpenDialog({
@@ -115,7 +119,48 @@ ipcMain.on('escolher-arquivo', async event => {
     ]
   })
   if(result) {
-    console.log(result.filePaths[0])
     event.sender.send('arquivo-selecionado', result.filePaths[0])
   }
+})
+
+ipcMain.on('converter', (event, args) => {
+
+  /*
+  PythonShell.run('hello.py', args, function(err, results) {
+    if (err) throw err
+    console.log(`Retorno do Python: ${results}`)
+  })
+  */
+
+  let converter = new PythonShell('./src/scripts/hello.py')
+
+  converter.send(args)
+
+  converter.on('message', function(message){
+    console.log(message)
+  })
+
+  converter.end(function(err){
+    if (err) throw err
+    console.log('finished')
+  })
+
+})
+
+ipcMain.on('aviso-arquivo-vazio', () => {
+  dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
+    title: 'Aviso!',
+    type: 'warning',
+    message: 'Por favor, informe o caminho do arquivo',
+    buttons: ['OK']
+  })
+})
+
+ipcMain.on('aviso-campos-vazios', () => {
+  dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
+    title: 'Aviso!',
+    type: 'warning',
+    message: 'Por favor, informe pelo menos um parâmetro',
+    buttons: ['OK']
+  })
 })

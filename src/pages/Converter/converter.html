@@ -24,20 +24,20 @@
 
             <p> Coluna da Altura </p> 
             <div>
-                <input type="text" name="" id="altura">
+                <input type="text" name="" id="altura" disabled>
                 <label for=""> Usar valores </label>
                 <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" id="usar-altura">
                     <span class="slider round"></span>
                 </label>
             </div>
 
             <p> Coluna da Intensidade </p> 
             <div>
-                <input type="text" name="" id="intensidade">
+                <input type="text" name="" id="intensidade" disabled="disabled">
                 <label for=""> Usar valores </label>
                 <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" id="usar-intensidade">
                     <span class="slider round"></span>
                 </label>
             </div>
@@ -45,10 +45,10 @@
             
             <p> Coluna da Duração </p>
             <div>
-                <input type="text" name="" id="duracao">
+                <input type="text" name="" id="duracao" disabled="disabled">
                 <label for=""> Usar valores </label>
                 <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" id="usar-duracao">
                     <span class="slider round"></span>
                 </label>
             </div>
@@ -63,7 +63,9 @@
         </form>
     </div>
 
-    <script src="../../modules/converter.js"></script>
+    <script>
+        require('../../modules/converter.js')
+    </script>
 
 </body>
 </html>

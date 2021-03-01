@@ -1,4 +1,7 @@
-import sys
-def hello(text):
-    print('Hello from Python!')
-    sys.stdout.flush()
+import sys, json
+
+caminho = sys.stdin.readlines()
+
+caminho = json.loads(caminho[0])
+
+print('Arquivo no Python: {}'.format(caminho['caminho']))

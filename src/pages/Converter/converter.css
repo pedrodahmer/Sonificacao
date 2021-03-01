@@ -46,7 +46,6 @@ input {
   margin-right: 10px;
 }
 
-
 /* Estilizacao do toggleButton */
 .switch {
   position: relative;
@@ -125,6 +124,7 @@ form img {
 form div {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   margin: 10px;
 }
@@ -160,7 +160,6 @@ a:hover {
 }
 
 .btn {
-  border: solid 2px #000;
   border-radius: 4px;
 
   background-color: #2F4362;
@@ -170,12 +169,13 @@ a:hover {
 
   box-shadow: -2px 4px #EEE;
 
-  padding: 4px;
+  padding: 6px;
 }
 
 .btn:hover {
   background-color: lightgrey;
   cursor: pointer;
+  box-shadow: none;
 }
 
 #btn-escolher-arquivo {
