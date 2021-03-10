@@ -77,11 +77,13 @@ btnConverter.onclick = () => {
                 duracao: colunaDuracao.value
             }
         
+            /*
             let opcoes = {
                 mode: 'text',
                 scriptPath: './src/scripts',
                 args: [JSON.stringify(campos)]
             }
+            */
         
             ipcRenderer.send('converter', JSON.stringify(campos))
     

@@ -4,11 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../style/global.css">
+    <link rel="stylesheet" href="./reproducao.css">
+
     <title> Reprodução MIDI </title>
 </head>
 <body>
 
-    <h1> Reprodução de arquivo MIDI </h1>
+    <div class="container">
+        <!-- <audio controls>
+            <source src="horse.ogg" type="audio/ogg">
+            <source src="horse.mp3" type="audio/mpeg">
+        </audio>
+        <midi-player src="jazz.mid" sound-font></midi-player> -->
+        <h1> Reprodução de arquivo MIDI </h1>
+
+        <div id="midi-player">
+            <midi-player
+                src="AlturaTeste.mid"
+                sound-font visualizer="#player-visualizer"
+                id="player-control">
+            </midi-player>
+            <midi-visualizer type="waterfall" id="player-visualizer"></midi-visualizer>
+        </div>
+        
+    </div>
     
+    <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.21.0/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.1.1"></script>
+
+    <script>
+        require('../../modules/converter.js')
+    </script>
+
 </body>
 </html>

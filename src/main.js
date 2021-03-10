@@ -73,10 +73,19 @@ const template = [
         click: (MenuItem, BrowserWindow, event) => {
           BrowserWindow.loadFile('./Pages/Ajuda/ajuda.html')
         }
-      },
+      }
+    ]
+  },
+  {
+    label: 'Dev',
+    submenu: [
       {
         label: 'DevTools',
         role: 'toggleDevTools'
+      },
+      {
+        label: 'Reload',
+        role: 'reload'
       }
     ]
   }
@@ -132,7 +141,7 @@ ipcMain.on('converter', (event, args) => {
   })
   */
 
-  let converter = new PythonShell('./src/scripts/hello.py')
+  let converter = new PythonShell('./src/scripts/altura.py')
 
   converter.send(args)
 

@@ -1,5 +1,5 @@
 {
-  "name": "Sonificacao",
+  "name": "SonificacaoApp",
   "version": "1.0.0",
   "description": "Sonificacao de Dados - Projeto ESW II",
   "main": "./src/main.js",
@@ -7,10 +7,15 @@
     "start": "electron ./src/main.js"
   },
   "keywords": [],
-  "author": "Pedrao",
+  "author": "Team TryCatch",
+  "build": {
+    "asar": "true",
+    "productName": "Sonificacao de Dados"
+  },
   "license": "ISC",
   "devDependencies": {
-    "electron": "^11.2.1"
+    "electron": "^11.2.1",
+    "electron-builder": "^22.10.5"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
