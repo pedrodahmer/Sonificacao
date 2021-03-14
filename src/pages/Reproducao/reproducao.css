@@ -16,6 +16,9 @@
     padding: 25px;
 
     border: solid black 2px;
+
+    height: 500;
+    width: 500px;
 }
 
 #player-control {
@@ -24,7 +27,7 @@
     align-items: center;
 }
 
-#player-visualizer {
+#visualizer {
     display: flex;
     align-items: center;
     justify-content: center;

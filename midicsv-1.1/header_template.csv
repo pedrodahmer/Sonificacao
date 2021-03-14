@@ -1,0 +1,9 @@
+0, 0, Header, 1, 2, 480
+1, 0, Start_track
+1, 0, Title_t, "FIREBALLS"
+1, 0, Time_signature, 4, 2, 24, 8
+1, 0, Key_signature, 0, "major"
+1, 0, Tempo, 600000
+1, 0, Program_c, 0, 000
+1, 0, End_track
+2, 0, Start_track

@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
+    "@magenta/music": "^1.21.0",
     "electron-reload": "^1.5.0",
     "python-shell": "^2.0.3"
   }

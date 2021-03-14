@@ -1,6 +1,4 @@
 const { ipcRenderer } = require('electron')
-const { PythonShell } = require('python-shell')
-const { path } = require('path')
 
 const btnConverter = document.getElementById('btn-converter')
 const btnEscolherArquivo = document.getElementById('btn-escolher-arquivo')
@@ -13,6 +11,17 @@ const caminhoArquivo = document.getElementById('caminho')
 const colunaAltura = document.getElementById('altura')
 const colunaIntensidade = document.getElementById('intensidade')
 const colunaDuracao = document.getElementById('duracao')
+const nomeArquivo = document.getElementById('nome-arquivo')
+
+/*
+const visualizador = document.getElementById('visualizer')
+
+visualizador.config = {
+    noteHeight: 8,
+    activeNoteRGB: '255, 0, 0',
+    // scrollType: 2
+}
+*/
 
 btnEscolherArquivo.addEventListener('click', () => {
     ipcRenderer.send('escolher-arquivo')
@@ -65,44 +74,33 @@ function verificarArquivoVazio() {
     return true
 }
 
+function verificarNomeArquivoVazio() {
+    if (nomeArquivo.value == '') {
+        return false
+    }
+    return true
+}
+
 btnConverter.onclick = () => {
 
-    if(verificarArquivoVazio()) {
-        if(verificarCamposVazios()) {
-
-            let campos = {
-                caminho: caminhoArquivo.value,
-                altura: colunaAltura.value,
-                intensidade: colunaIntensidade.value,
-                duracao: colunaDuracao.value
+    if (verificarArquivoVazio()) {
+        if (verificarCamposVazios()) {
+            if (verificarNomeArquivoVazio()) {
+                let campos = {
+                    caminho: caminhoArquivo.value,
+                    altura: colunaAltura.value,
+                    intensidade: colunaIntensidade.value,
+                    duracao: colunaDuracao.value,
+                    nomeArquivo: nomeArquivo.value
+                }
+                ipcRenderer.send('converter', JSON.stringify(campos))
+            } else {
+                ipcRenderer.send('aviso-nome-arquivo-vazio')
             }
-        
-            /*
-            let opcoes = {
-                mode: 'text',
-                scriptPath: './src/scripts',
-                args: [JSON.stringify(campos)]
-            }
-            */
-        
-            ipcRenderer.send('converter', JSON.stringify(campos))
-    
         } else {
             ipcRenderer.send('aviso-campos-vazios')
         }
     } else {
         ipcRenderer.send('aviso-arquivo-vazio')
     }
-
-    
-
-    /*
-    PythonShell.run('./src/scripts/csvmidi.py', null, (err) => {
-        if (err) throw err;
-        console.log('finished')
-    })
-
-    ipcRenderer.send('sucesso')
-    */
 }
-

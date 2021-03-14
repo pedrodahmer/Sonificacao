@@ -8,25 +8,31 @@
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="./reproducao.css">
 
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2.0.0/webcomponents-loader.js"></script>
+    <script src="https://unpkg.com/@magenta/music@1.1.9/dist/magentamusic.js"></script>
+    <script src="midi-visualizer.js"></script>
+
     <title> Reprodução MIDI </title>
 </head>
 <body>
 
     <div class="container">
-        <!-- <audio controls>
-            <source src="horse.ogg" type="audio/ogg">
-            <source src="horse.mp3" type="audio/mpeg">
-        </audio>
-        <midi-player src="jazz.mid" sound-font></midi-player> -->
         <h1> Reprodução de arquivo MIDI </h1>
 
         <div id="midi-player">
             <midi-player
                 src="AlturaTeste.mid"
-                sound-font visualizer="#player-visualizer"
+                sound-font visualizer="#visualizer"
                 id="player-control">
             </midi-player>
-            <midi-visualizer type="waterfall" id="player-visualizer"></midi-visualizer>
+
+            <midi-visualizer
+                id="visualizer"
+                url="https://cdn.glitch.com/3312a3b4-6418-4bed-a0bd-3a0ca4dfa2fb%2Fchopin.mid?1534369337985"
+                type="waterfall">
+            </midi-visualizer>
+            
+            <!-- <midi-visualizer type="waterfall" id="player-visualizer"></midi-visualizer> -->
         </div>
         
     </div>

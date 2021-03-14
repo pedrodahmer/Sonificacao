@@ -46,6 +46,11 @@ input {
   margin-right: 10px;
 }
 
+#nome-arquivo {
+  margin: 15px 0px;
+  width: 100%;
+}
+
 /* Estilizacao do toggleButton */
 .switch {
   position: relative;

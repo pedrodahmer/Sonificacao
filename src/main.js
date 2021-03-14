@@ -141,17 +141,27 @@ ipcMain.on('converter', (event, args) => {
   })
   */
 
-  let converter = new PythonShell('./src/scripts/altura.py')
+  let converter = new PythonShell('./src/scripts/engine.py')
 
   converter.send(args)
 
+  /*
   converter.on('message', function(message){
-    console.log(message)
   })
+  */
 
-  converter.end(function(err){
+  converter.end(function(err) {
     if (err) throw err
     console.log('finished')
+    const result = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), {
+      title: 'Sucesso!',
+      type: 'info',
+      message: 'Conversão concluída! Deseja reproduzir a sonificação agora?',
+      buttons: ['Sim', 'Não'],
+    })
+    if (result == 0) {
+      BrowserWindow.getFocusedWindow().loadFile('./Pages/Reproducao/reproducao.html')
+    }
   })
 
 })
@@ -170,6 +180,15 @@ ipcMain.on('aviso-campos-vazios', () => {
     title: 'Aviso!',
     type: 'warning',
     message: 'Por favor, informe pelo menos um parâmetro',
+    buttons: ['OK']
+  })
+})
+
+ipcMain.on('aviso-nome-arquivo-vazio', () => {
+  dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
+    title: 'Aviso!',
+    type: 'warning',
+    message: 'Por favor, informe um nome para o arquivo de saída',
     buttons: ['OK']
   })
 })
