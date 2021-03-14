@@ -87,6 +87,23 @@ def transform_data(filename, column):
 	return new_list_data
 
 
+def edit_header_template(output_filename):
+	copyfile('././midicsv-1.1/header_template.csv', './src/files/{}.csv'.format(output_filename))
+
+	file = open('./src/files/{}.csv'.format(output_filename))
+	lines = file.readlines()
+	file.close()
+
+	new_line = lines[2].replace('FIREBALLS', output_filename)
+	
+	with open('./src/files/{}.csv'.format(output_filename), 'w') as file:
+	for i, line in enumerate(lines):
+		if i == 2:
+			file.writelines(new_line)
+		else:
+			file.writelines(line)
+
+
 path = sys.stdin.readlines()
 
 path = json.loads(path[0])
@@ -133,7 +150,7 @@ print('Lista duracao: {}'.format(list_height))
 
 output_filename = path['nomeArquivo']
 
-copyfile('././midicsv-1.1/header_template.csv', './src/files/{}.csv'.format(output_filename))
+edit_header_template(output_filename)
 
 write_in_csv_file(list_height, list_intensity, list_duration, output_filename)
 
