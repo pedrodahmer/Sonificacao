@@ -68,7 +68,7 @@ def get_column_of_csv(filename, column):
 	with open(filename) as csv_file:
 		reader = csv.DictReader(csv_file)
 		for row in reader:
-			yield int(row[column])
+			yield int(float(row[column]))
 
 
 def transform_data(filename, column):
