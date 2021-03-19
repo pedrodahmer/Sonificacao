@@ -28,19 +28,25 @@ def write_in_csv_file(list_height, list_intensity, list_duration, filename):
 
 		while i != len(list_height):
 
+			if list_intensity[i] == 80: # Caso de intensidade constante
+				intensity = list_intensity[i]
+
 			if list_intensity[i] < 60:
 				intensity = 40
 			else:
 				intensity = 80
 
+			if list_duration[i] == 499: # Caso de duracao constante
+				duration = list_duration[i]
+
 			if 36 <= list_duration[i] <= 48:
-				duration = 249 # 499
+				duration = 249
 			elif 48 < list_duration[i] <= 60:
-				duration = 499 # 999
+				duration = 499
 			elif 60 < list_duration[i] <= 72:
-				duration = 999 # 1999
+				duration = 999
 			elif 72 < list_duration[i] <= 84:
-				duration = 1999 # 3999
+				duration = 1999
 
 			if i == 0:
 				writer.writerow([2, 0, 'Note_on_c', 0, list_height[i], intensity])
@@ -121,7 +127,7 @@ def fill_const_duration(list_duration, length):
 
 # Lendo o JSON vindo da aplicacao electron
 fields = sys.stdin.readlines()
-fields = json.loads(path[0])
+fields = json.loads(fields[0])
 
 list_height = [] # Lista para a altura
 list_intensity = [] # Lista para a intensidade
@@ -159,7 +165,7 @@ elif fields['altura'] != '':
 elif fields['intensidade'] != '':
 	list_intensity = transform_data(path, fields['intensidade'])
 	length = len(list_intensity)
-	list_height = fill_const_height(list_height, lenght)
+	list_height = fill_const_height(list_height, length)
 	list_duration = fill_const_duration(list_duration, length)
 else:
 	list_duration = transform_data(path, fields['duracao'])

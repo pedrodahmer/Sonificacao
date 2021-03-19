@@ -143,7 +143,12 @@ ipcMain.on('converter', (event, args) => {
   */
 
   converter.end(function(err) {
-    if (err) throw err
+    if (err) {
+      dialog.showErrorBox(BrowserWindow.getFocusedWindow(), {
+        message: "Alguma coisa não deu certo :(\n Verifique seu conjunto de dados, por favor."
+      })
+      throw err
+    }
     console.log('finished')
     const result = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), {
       title: 'Sucesso!',
@@ -161,6 +166,24 @@ ipcMain.on('converter', (event, args) => {
 
 ipcMain.on('obter-ultimo-arquivo', (event, args) => {
   event.reply('entrada-arquivo-midi', ultimoArquivoAdicionado) 
+})
+
+ipcMain.on('escolher-arquivo-midi', async event => {
+  const result = await dialog.showOpenDialog({
+    title: 'Procurando arquivos MIDI...',
+    buttonLabel: 'Abrir',
+    message: 'Mensagem',
+    properties: ['openFile'],
+    filters: [
+      {
+        name: 'Musical Instrument Digital Interface',
+        extensions: ['mid', 'midi']
+      }
+    ]
+  })
+  if(result) {
+    event.sender.send('escolha-arquivo-midi', result.filePaths[0])
+  }
 })
 
 ipcMain.on('aviso-arquivo-vazio', () => {

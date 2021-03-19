@@ -1,5 +1,6 @@
 .container {
     padding: 25px;
+    margin-top: 50px;
 
     display: flex;
     flex-direction: column;
@@ -26,8 +27,8 @@
     padding: 5px;
 
     border: solid 2px black;
-    border-bottom: none;
-    border-radius: 10px 10px 0 0;
+    border-radius: 50px;
+    box-shadow: -2px 4px #EEE;
 
     width: 800px;
 }
@@ -56,11 +57,13 @@
 
 #controlador midi-player::part(play-button):hover {
     background-color: #CCC;
+    cursor: pointer;
 }
 
 #select {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 #selecionar-visualizador {
@@ -68,11 +71,16 @@
 
     font-size: 16px;
 
-    margin-top: 5px;
     padding: 5px;
 
     border: solid 2px #000;
     border-radius: 50px;
+
+    transition: background-color 0.25s;
+}
+
+#selecionar-visualizador:hover {
+    cursor: pointer;
 }
 
 #visualizador {
@@ -80,13 +88,8 @@
     align-items: center;
     justify-content: center;
 
-    border: solid 2px black;
-    box-shadow: -2px 4px #EEE;
-
-    padding: 10px;
-
     width: 800px;
-    height: 400px;
+    height: 250px;
 }
 
 midi-visualizer {
@@ -126,7 +129,7 @@ a:hover {
     background-color: #eeeeee;
 }
   
-#btn-escolher-outro-arquivo {
+#escolher-arquivo-midi {
     width: 200px;
 
     border-radius: 4px;
@@ -141,7 +144,7 @@ a:hover {
     transition: background-color 0.25s;
 }
 
-#btn-escolher-outro-arquivo:hover {
+#escolher-arquivo-midi:hover {
     background-color: lightgrey;
     cursor: pointer;
     box-shadow: none;

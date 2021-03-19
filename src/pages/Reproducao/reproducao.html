@@ -17,23 +17,17 @@
 <body>
 
     <div class="container">
-
-        <!-- <div id="title">
-            <img src="../../assets/icons/play-icon.svg" alt="" id="play-icon">
-            <h1> Reprodução de arquivo MIDI </h1>
-        </div> -->
             
         <div id="controlador">
             <midi-player
-                src="../../files/Teste.mid"
+                src=""
                 sound-font visualizer="#visualizer"
                 id="player-control">
             </midi-player>
 
             <div id="select">
                 <select name="select" id="selecionar-visualizador">
-                    <option value="piano-roll" selected> Piano-roll </option>
-                    <option value="waterfall"> Cascata (piano) </option>
+                    <option value="waterfall" selected> Cascata (piano) </option>
                     <option value="staff"> Partitura </option>
                 </select>
             </div>
@@ -44,15 +38,15 @@
             <midi-visualizer
                 id="visualizer"
                 url="https://cdn.glitch.com/3312a3b4-6418-4bed-a0bd-3a0ca4dfa2fb%2Fchopin.mid?1534369337985"
-                type="piano-roll">
+                type="waterfall">
             </midi-visualizer>
         </div>
 
         <div id="rodape">
             <a href="../../index.html"> <img src="../../assets/icons/arrow-left-solid.svg" alt="" class="icon-voltar"> </a>
 
-            <button class="btn" id="btn-escolher-outro-arquivo">
-                Escolher outro arquivo
+            <button class="btn" id="escolher-arquivo-midi">
+                Escolher arquivo
             </button>
         </div>
     </div>

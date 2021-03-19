@@ -5,14 +5,12 @@ window.onload = function() {
     const controlador = document.getElementById('player-control')
     const opcaoVisualizador = document.getElementById('selecionar-visualizador')
     const visualizador = document.getElementById('visualizer')
+    const escolherArquivo = document.getElementById('escolher-arquivo-midi')
 
-    /*
     ipcRenderer.on('entrada-arquivo-midi', (event, args) => {
-        console.log(args)
         controlador.src = `../../files/${args}.mid`
     })
     ipcRenderer.send('obter-ultimo-arquivo')
-    */
 
     visualizador.config = {
         noteHeight: 6,
@@ -21,15 +19,22 @@ window.onload = function() {
     }
 
     opcaoVisualizador.addEventListener('click', () => {
-        let opcao = opcaoVisualizador.options[opcaoVisualizador.selectedIndex]
+        let opcao = opcaoVisualizador.options[ opcaoVisualizador.selectedIndex ]
 
-        if (opcao.value == 'waterfall') {
+        if ( opcao.value == 'waterfall' ) {
             visualizador.type = 'waterfall'
-        } else if (opcao.value == 'staff') {
-            visualizador.type = 'staff'
             visualizador.config = { noteHeight: 8, activeNoteRGB: '255, 0, 0', scrollType: 1 }
         } else {
-            visualizador.type = 'piano-roll'
+            visualizador.type = 'staff'
+            visualizador.config = { noteHeight: 8, activeNoteRGB: '255, 0, 0', scrollType: 1 }
         }
     })
+
+    escolherArquivo.addEventListener('click', () => {
+        ipcRenderer.send('escolher-arquivo-midi')
+    })
+    ipcRenderer.on('escolha-arquivo-midi', (event, result) => {
+        controlador.src = result
+    })
+
 }
