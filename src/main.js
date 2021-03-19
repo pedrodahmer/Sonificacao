@@ -9,7 +9,7 @@ const {
 
 const { PythonShell } = require('python-shell')
 
-require('electron-reload')(__dirname)
+// require('electron-reload')(__dirname)
 
 let ultimoArquivoAdicionado = ''
 
@@ -20,10 +20,11 @@ function createWindow () {
     resizable: false,
     webPreferences: {
       nodeIntegration: true,
+      webSecurity: false
     }
   })
 
-  win.loadFile('index.html')
+  win.loadFile(`${__dirname}/index.html`)
 }
 
 const template = [
@@ -44,37 +45,37 @@ const template = [
       {
         label: 'Início',
         click: (MenuItem, BrowserWindow, event) => {
-          BrowserWindow.loadFile('index.html')
+          BrowserWindow.loadFile(`${__dirname}/index.html`)
         }
       },
       {
         label: 'Biblioteca',
         click: (MenuItem, BrowserWindow, event) => {
-          BrowserWindow.loadFile('./Pages/Biblioteca/biblioteca.html')
+          BrowserWindow.loadFile(`${__dirname}/pages/Biblioteca/biblioteca.html`)
         }
       },
       {
         label: 'Sonificar arquivo CSV',
         click: (MenuItem, BrowserWindow, event) => {
-          BrowserWindow.loadFile('./Pages/Converter/converter.html')
+          BrowserWindow.loadFile(`${__dirname}/pages/Converter/converter.html`)
         }
       },
       {
         label: 'Reproduzir MIDI',
         click: (MenuItem, BrowserWindow, event) => {
-          BrowserWindow.loadFile('./Pages/Reproducao/reproducao.html')
+          BrowserWindow.loadFile(`${__dirname}/pages/Reproducao/reproducao.html`)
         }
       },
       {
         label: 'Sobre',
         click: (MenuItem, BrowserWindow, event) => {
-            BrowserWindow.loadFile('./Pages/Sobre/sobre.html')
+            BrowserWindow.loadFile(`${__dirname}/pages/Sobre/sobre.html`)
         }
       },
       {
         label: 'Ajuda',
         click: (MenuItem, BrowserWindow, event) => {
-          BrowserWindow.loadFile('./Pages/Ajuda/ajuda.html')
+          BrowserWindow.loadFile(`${__dirname}/pages/Ajuda/ajuda.html`)
         }
       }
     ]
@@ -158,7 +159,7 @@ ipcMain.on('converter', (event, args) => {
     })
     if (result == 0) {
       ultimoArquivoAdicionado = campos['nomeArquivo']
-      BrowserWindow.getFocusedWindow().loadFile('./Pages/Reproducao/reproducao.html')
+      BrowserWindow.getFocusedWindow().loadFile(`${__dirname}/pages/Reproducao/reproducao.html`)
     }
   })
 
