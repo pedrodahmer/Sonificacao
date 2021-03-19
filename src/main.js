@@ -132,7 +132,7 @@ ipcMain.on('escolher-arquivo', async event => {
 
 ipcMain.on('converter', (event, args) => {
 
-  let converter = new PythonShell('./src/scripts/engine.py')
+  let converter = new PythonShell(`${__dirname}/scripts/engine.py`)
 
   converter.send(args)
 
@@ -145,9 +145,6 @@ ipcMain.on('converter', (event, args) => {
 
   converter.end(function(err) {
     if (err) {
-      dialog.showErrorBox(BrowserWindow.getFocusedWindow(), {
-        message: "Alguma coisa não deu certo :(\n Verifique seu conjunto de dados, por favor."
-      })
       throw err
     }
     console.log('finished')
