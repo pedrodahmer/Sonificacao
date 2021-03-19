@@ -34,13 +34,13 @@ def write_in_csv_file(list_height, list_intensity, list_duration, filename):
 				intensity = 80
 
 			if 36 <= list_duration[i] <= 48:
-				duration = 499
+				duration = 249 # 499
 			elif 48 < list_duration[i] <= 60:
-				duration = 999
+				duration = 499 # 999
 			elif 60 < list_duration[i] <= 72:
-				duration = 1999
+				duration = 999 # 1999
 			elif 72 < list_duration[i] <= 84:
-				duration = 3999
+				duration = 1999 # 3999
 
 			if i == 0:
 				writer.writerow([2, 0, 'Note_on_c', 0, list_height[i], intensity])
@@ -97,63 +97,80 @@ def edit_header_template(output_filename):
 	new_line = lines[2].replace('FIREBALLS', output_filename)
 	
 	with open('./src/files/{}.csv'.format(output_filename), 'w') as file:
-	for i, line in enumerate(lines):
-		if i == 2:
-			file.writelines(new_line)
-		else:
-			file.writelines(line)
+		for i, line in enumerate(lines):
+			if i == 2:
+				file.writelines(new_line)
+			else:
+				file.writelines(line)
 
 
-path = sys.stdin.readlines()
+def fill_const_height(list_height, length):
+	for value in range(length):
+		list_height.append(60)
+	return list_height
 
-path = json.loads(path[0])
+def fill_const_intensity(list_intensity, length):
+	for value in range(length):
+		list_intensity.append(80)
+	return list_intensity
+
+def fill_const_duration(list_duration, length):
+	for value in range(length):
+		list_duration.append(499)
+	return list_duration
+
+# Lendo o JSON vindo da aplicacao electron
+fields = sys.stdin.readlines()
+fields = json.loads(path[0])
 
 list_height = [] # Lista para a altura
 list_intensity = [] # Lista para a intensidade
 list_duration = [] # Lista para a duracao
 
-if path['altura'] != '' and path['intensidade'] != '' and path['duracao'] != '':
-	list_height = transform_data(path['caminho'], path['altura'])
-	list_intensity = transform_data(path['caminho'], path['intensidade'])
-	list_duration = transform_data(path['caminho'], path['duracao'])
-elif path['altura'] != '' and path['intensidade'] != '':
-	list_height = transform_data(path['caminho'], path['altura'])
-	list_intensity = transform_data(path['caminho'], path['intensidade'])
-	list_duration = list_height
-elif path['altura'] != '' and path['duracao'] != '':
-	list_height = transform_data(path['caminho'], path['altura'])
-	list_intensity = list_height
-	list_duration = transform_data(path['caminho'], path['duracao'])
-elif path['intensidade'] != '' and path['duracao'] != '':
-	list_intensity = transform_data(path['caminho'], path['intensidade'])
-	list_duration = transform_data(path['caminho'], path['duracao'])
-	list_height = list_intensity
-elif path['altura'] != '':
-	list_height = transform_data(path['caminho'], path['altura'])
-	list_intensity = list_height
-	list_duration = list_height
-elif path['intensidade'] != '':
-	list_intensity = transform_data(path['caminho'], path['intensidade'])
-	list_height = list_intensity
-	list_duration = list_intensity
+path = fields['caminho'] # Caminho do conjunto de dados csv
+
+length = 0 # Variavel para guardar o tamanho das listas, caso alguma esteja vazia
+	
+# Verificando os campos escolhidos e transformando os dados ou preenchendo com valor constante
+if fields['altura'] != '' and fields['intensidade'] != '' and fields['duracao'] != '':
+	list_height = transform_data(path, fields['altura'])
+	list_intensity = transform_data(path, fields['intensidade'])
+	list_duration = transform_data(path, fields['duracao'])
+elif fields['altura'] != '' and fields['intensidade'] != '':
+	list_height = transform_data(path, fields['altura'])
+	list_intensity = transform_data(path, fields['intensidade'])
+	length = len(list_height)
+	list_duration = fill_const_duration(list_duration, length) 
+elif fields['altura'] != '' and fields['duracao'] != '':
+	list_height = transform_data(path, fields['altura'])
+	length = len(list_height)
+	list_intensity = fill_const_intensity(list_intensity, length)
+	list_duration = transform_data(path, fields['duracao'])
+elif fields['intensidade'] != '' and fields['duracao'] != '':
+	list_intensity = transform_data(path, fields['intensidade'])
+	list_duration = transform_data(path, fields['duracao'])
+	length = len(list_intensity)
+	list_height = fill_const_height(list_height, length)
+elif fields['altura'] != '':
+	list_height = transform_data(path, fields['altura'])
+	length = len(list_height)
+	list_intensity = fill_const_intensity(list_intensity, length)
+	list_duration = fill_const_duration(list_duration, length)
+elif fields['intensidade'] != '':
+	list_intensity = transform_data(path, fields['intensidade'])
+	length = len(list_intensity)
+	list_height = fill_const_height(list_height, lenght)
+	list_duration = fill_const_duration(list_duration, length)
 else:
-	list_duration = transform_data(path['caminho'], path['duracao'])
-	list_height = list_duration
-	list_intensity = list_duration
+	list_duration = transform_data(path, fields['duracao'])
+	length = len(list_duration)
+	list_height = fill_const_height(list_height, length)
+	list_intensity = fill_const_intensity(list_intensity, length)
 
-"""
-print('Lista com os dados transformados:')
-print('Lista altura: {}'.format(list_height))
-print('Lista intensidade: {}'.format(list_height))
-print('Lista duracao: {}'.format(list_height))
-"""
+output_filename = fields['nomeArquivo'] # Nome do arquivo de saida
 
-output_filename = path['nomeArquivo']
+edit_header_template(output_filename) # Editando o template do cabecalho com o nome do arquivo de saida
 
-edit_header_template(output_filename)
+write_in_csv_file(list_height, list_intensity, list_duration, output_filename) # Escrevendo o arquivo a ser convertido
 
-write_in_csv_file(list_height, list_intensity, list_duration, output_filename)
-
-call_csvmidi(output_filename)
-
-# print('Conversão concluída! Deseja reproduzir a sonificação agora?')
+call_csvmidi(output_filename) # Chamando o programa conversor csvmidi

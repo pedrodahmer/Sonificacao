@@ -1,5 +1,7 @@
 const { ipcRenderer } = require('electron')
 
+// const mm = require('@magenta/music')
+
 const btnConverter = document.getElementById('btn-converter')
 const btnEscolherArquivo = document.getElementById('btn-escolher-arquivo')
 
@@ -13,15 +15,9 @@ const colunaIntensidade = document.getElementById('intensidade')
 const colunaDuracao = document.getElementById('duracao')
 const nomeArquivo = document.getElementById('nome-arquivo')
 
-/*
-const visualizador = document.getElementById('visualizer')
+// const viz = new mm.WaterfallSVGVisualizer('../files/musak.mid', visualizador, config)
 
-visualizador.config = {
-    noteHeight: 8,
-    activeNoteRGB: '255, 0, 0',
-    // scrollType: 2
-}
-*/
+
 
 btnEscolherArquivo.addEventListener('click', () => {
     ipcRenderer.send('escolher-arquivo')

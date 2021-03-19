@@ -17,30 +17,50 @@
 <body>
 
     <div class="container">
-        <h1> Reprodução de arquivo MIDI </h1>
 
-        <div id="midi-player">
+        <!-- <div id="title">
+            <img src="../../assets/icons/play-icon.svg" alt="" id="play-icon">
+            <h1> Reprodução de arquivo MIDI </h1>
+        </div> -->
+            
+        <div id="controlador">
             <midi-player
-                src="AlturaTeste.mid"
+                src="../../files/Teste.mid"
                 sound-font visualizer="#visualizer"
                 id="player-control">
             </midi-player>
 
+            <div id="select">
+                <select name="select" id="selecionar-visualizador">
+                    <option value="piano-roll" selected> Piano-roll </option>
+                    <option value="waterfall"> Cascata (piano) </option>
+                    <option value="staff"> Partitura </option>
+                </select>
+            </div>
+
+        </div>
+
+        <div id="visualizador">
             <midi-visualizer
                 id="visualizer"
                 url="https://cdn.glitch.com/3312a3b4-6418-4bed-a0bd-3a0ca4dfa2fb%2Fchopin.mid?1534369337985"
-                type="waterfall">
+                type="piano-roll">
             </midi-visualizer>
-            
-            <!-- <midi-visualizer type="waterfall" id="player-visualizer"></midi-visualizer> -->
         </div>
-        
+
+        <div id="rodape">
+            <a href="../../index.html"> <img src="../../assets/icons/arrow-left-solid.svg" alt="" class="icon-voltar"> </a>
+
+            <button class="btn" id="btn-escolher-outro-arquivo">
+                Escolher outro arquivo
+            </button>
+        </div>
     </div>
     
     <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.21.0/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.1.1"></script>
 
     <script>
-        require('../../modules/converter.js')
+        require('../../modules/reproducao.js')
     </script>
 
 </body>

@@ -9,12 +9,15 @@ const {
 
 const { PythonShell } = require('python-shell')
 
-// require('electron-reload')(__dirname)
+require('electron-reload')(__dirname)
+
+let ultimoArquivoAdicionado = ''
 
 function createWindow () {
   const win = new BrowserWindow({
-    width: 800,
+    width: 1000,
     height: 600,
+    resizable: false,
     webPreferences: {
       nodeIntegration: true,
     }
@@ -108,12 +111,6 @@ app.on('activate', () => {
   }
 })
 
-/*
-ipcMain.on('sucesso', (event) => {
-  dialog.showMessageBox(null, 'pedrao')
-})
-*/
-
 ipcMain.on('escolher-arquivo', async event => {
   const result = await dialog.showOpenDialog({
     title: 'Procurando arquivos CSV...',
@@ -134,16 +131,11 @@ ipcMain.on('escolher-arquivo', async event => {
 
 ipcMain.on('converter', (event, args) => {
 
-  /*
-  PythonShell.run('hello.py', args, function(err, results) {
-    if (err) throw err
-    console.log(`Retorno do Python: ${results}`)
-  })
-  */
-
   let converter = new PythonShell('./src/scripts/engine.py')
 
   converter.send(args)
+
+  let campos = JSON.parse(args)
 
   /*
   converter.on('message', function(message){
@@ -160,10 +152,15 @@ ipcMain.on('converter', (event, args) => {
       buttons: ['Sim', 'Não'],
     })
     if (result == 0) {
+      ultimoArquivoAdicionado = campos['nomeArquivo']
       BrowserWindow.getFocusedWindow().loadFile('./Pages/Reproducao/reproducao.html')
     }
   })
 
+})
+
+ipcMain.on('obter-ultimo-arquivo', (event, args) => {
+  event.reply('entrada-arquivo-midi', ultimoArquivoAdicionado) 
 })
 
 ipcMain.on('aviso-arquivo-vazio', () => {

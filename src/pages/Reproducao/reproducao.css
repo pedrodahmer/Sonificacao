@@ -4,35 +4,147 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
-#midi-player {
+#title {
+    display: flex;
+    align-items: center;
+}
+
+#play-icon {
+    width: 70px;
+    height: 70px;
+
+    margin-right: 15px;
+}
+
+#controlador {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    flex-direction: column;
+    
+    padding: 5px;
 
-    padding: 25px;
+    border: solid 2px black;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
 
-    border: solid black 2px;
-
-    height: 500;
-    width: 500px;
+    width: 800px;
 }
 
-#player-control {
-    padding: 25px;
+#controlador midi-player {
+    width: 400px;
+}
+
+#controlador midi-player::part(control-panel) {
+    background-color: #FFF;
+}
+
+#controlador midi-player::part(time) {
+    font-size: 16px;
+}
+
+#controlador midi-player::part(play-button) {
+    width: 35px;
+    height: 35px;
+
+    background-color: #2F4362;
+    color: #FFF;
+
+    transition: background-color 0.25s;
+}
+
+#controlador midi-player::part(play-button):hover {
+    background-color: #CCC;
+}
+
+#select {
     display: flex;
     align-items: center;
 }
 
-#visualizer {
+#selecionar-visualizador {
+    width: 200px;
+
+    font-size: 16px;
+
+    margin-top: 5px;
+    padding: 5px;
+
+    border: solid 2px #000;
+    border-radius: 50px;
+}
+
+#visualizador {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    padding: 25px;
+    border: solid 2px black;
+    box-shadow: -2px 4px #EEE;
 
-    border: solid black 2px;
+    padding: 10px;
+
+    width: 800px;
+    height: 400px;
 }
+
+midi-visualizer {
+    width: inherit;
+    overflow: auto;
+}
+
+#rodape {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 800px;
+
+    padding: 10px
+}
+
+.icon-voltar {
+    width: 80%;
+    height: 80%;
+}
+
+a {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 100%;
+
+    transition: background-color 0.25s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a:hover {
+    background-color: #eeeeee;
+}
+  
+#btn-escolher-outro-arquivo {
+    width: 200px;
+
+    border-radius: 4px;
+    background-color: #2F4362;
+    box-shadow: -2px 4px #EEE;
+
+    font-size: 18px;
+    color: #FFF;
+
+    padding: 6px;
+
+    transition: background-color 0.25s;
+}
+
+#btn-escolher-outro-arquivo:hover {
+    background-color: lightgrey;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+
