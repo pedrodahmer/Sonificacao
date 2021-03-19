@@ -31,10 +31,16 @@ section {
     border-radius: 2px;
 }
 
-section p {
+section p, ul {
     padding: 10px;
     font-size: 18px;
     line-height: 170%;
+}
+
+#img-normalizacao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .rodape {
