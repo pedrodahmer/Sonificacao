@@ -139,10 +139,9 @@ ipcMain.on('converter', (event, args) => {
 
   let campos = JSON.parse(args)
 
-  /*
   converter.on('message', function(message){
+    console.log(message + " pedrao")
   })
-  */
 
   converter.end(function(err) {
     if (err) {

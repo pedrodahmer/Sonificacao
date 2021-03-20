@@ -66,8 +66,13 @@ def write_in_csv_file(list_height, list_intensity, list_duration, filesPath):
 def get_column_of_csv(filename, column):
 	with open(filename) as csv_file:
 		reader = csv.DictReader(csv_file)
-		for row in reader:
-			yield int(float(row[column]))
+		try:
+			for row in reader:
+				yield int(float(row[column]))
+		except:
+			print('Algum coluina não foi reconhecida! Verifique se elas estão escritas corretamente e tente novamente!')
+			return False
+			
 
 
 def transform_data(filename, column):
