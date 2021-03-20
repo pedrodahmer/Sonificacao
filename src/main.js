@@ -18,10 +18,11 @@ function createWindow () {
     width: 1000,
     height: 600,
     resizable: false,
+    icon: `${__dirname}/assets/icons/play-button.png`,
     webPreferences: {
       nodeIntegration: true,
       webSecurity: false
-    }
+    },
   })
 
   win.loadFile(`${__dirname}/index.html`)

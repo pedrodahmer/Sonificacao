@@ -1,96 +1,100 @@
 const { ipcRenderer } = require('electron')
 
-const btnConverter = document.getElementById('btn-converter')
-const btnEscolherArquivo = document.getElementById('btn-escolher-arquivo')
+window.onload = function() {
 
-const toggleBtnAltura = document.getElementById('usar-altura')
-const toggleBtnIntensidade = document.getElementById('usar-intensidade')
-const toggleBtnDuracao = document.getElementById('usar-duracao')
+    const btnConverter = document.getElementById('btn-converter')
+    const btnEscolherArquivo = document.getElementById('btn-escolher-arquivo')
 
-const caminhoArquivo = document.getElementById('caminho')
-const colunaAltura = document.getElementById('altura')
-const colunaIntensidade = document.getElementById('intensidade')
-const colunaDuracao = document.getElementById('duracao')
-const nomeArquivo = document.getElementById('nome-arquivo')
+    const toggleBtnAltura = document.getElementById('usar-altura')
+    const toggleBtnIntensidade = document.getElementById('usar-intensidade')
+    const toggleBtnDuracao = document.getElementById('usar-duracao')
 
-btnEscolherArquivo.addEventListener('click', () => {
-    ipcRenderer.send('escolher-arquivo')
-})
+    const caminhoArquivo = document.getElementById('caminho')
+    const colunaAltura = document.getElementById('altura')
+    const colunaIntensidade = document.getElementById('intensidade')
+    const colunaDuracao = document.getElementById('duracao')
+    const nomeArquivo = document.getElementById('nome-arquivo')
 
-ipcRenderer.on('arquivo-selecionado', (event, result) => {
-    caminhoArquivo.value = result
-})
+    btnEscolherArquivo.addEventListener('click', () => {
+        ipcRenderer.send('escolher-arquivo')
+    })
 
-toggleBtnAltura.addEventListener('click', () => {
-    if(toggleBtnAltura.checked) {
-        colunaAltura.disabled = false
-    } else {
-        colunaAltura.disabled = true
-        colunaAltura.value = ''
+    ipcRenderer.on('arquivo-selecionado', (event, result) => {
+        caminhoArquivo.value = result
+    })
+
+    toggleBtnAltura.addEventListener('click', () => {
+        if(toggleBtnAltura.checked) {
+            colunaAltura.disabled = false
+        } else {
+            colunaAltura.disabled = true
+            colunaAltura.value = ''
+        }
+    })
+
+    toggleBtnIntensidade.addEventListener('click', () => {
+        if(toggleBtnIntensidade.checked) {
+            colunaIntensidade.disabled = false
+        } else {
+            colunaIntensidade.disabled = true
+            colunaIntensidade.value = ''
+        }
+    })
+
+    toggleBtnDuracao.addEventListener('click', () => {
+        if(toggleBtnDuracao.checked) {
+            colunaDuracao.disabled = false
+        } else {
+            colunaDuracao.disabled = true
+            colunaDuracao.value = ''
+        }
+    })
+
+    function verificarCamposVazios() {
+        if( !toggleBtnAltura.checked && 
+            !toggleBtnIntensidade.checked &&
+            !toggleBtnDuracao.checked ) {
+            return false
+        }
+        return true
     }
-})
 
-toggleBtnIntensidade.addEventListener('click', () => {
-    if(toggleBtnIntensidade.checked) {
-        colunaIntensidade.disabled = false
-    } else {
-        colunaIntensidade.disabled = true
-        colunaIntensidade.value = ''
+    function verificarArquivoVazio() {
+        if(caminhoArquivo.value == '') {
+            return false
+        }
+        return true
     }
-})
 
-toggleBtnDuracao.addEventListener('click', () => {
-    if(toggleBtnDuracao.checked) {
-        colunaDuracao.disabled = false
-    } else {
-        colunaDuracao.disabled = true
-        colunaDuracao.value = ''
+    function verificarNomeArquivoVazio() {
+        if (nomeArquivo.value == '') {
+            return false
+        }
+        return true
     }
-})
 
-function verificarCamposVazios() {
-    if( !toggleBtnAltura.checked && 
-        !toggleBtnIntensidade.checked &&
-        !toggleBtnDuracao.checked ) {
-        return false
-    }
-    return true
-}
+    btnConverter.onclick = () => {
 
-function verificarArquivoVazio() {
-    if(caminhoArquivo.value == '') {
-        return false
-    }
-    return true
-}
-
-function verificarNomeArquivoVazio() {
-    if (nomeArquivo.value == '') {
-        return false
-    }
-    return true
-}
-
-btnConverter.onclick = () => {
-
-    if (verificarArquivoVazio()) {
-        if (verificarCamposVazios()) {
-            if (verificarNomeArquivoVazio()) {
-                let campos = {
-                    caminho: caminhoArquivo.value,
-                    altura: colunaAltura.value,
-                    intensidade: colunaIntensidade.value,
-                    duracao: colunaDuracao.value,
-                    nomeArquivo: nomeArquivo.value
+        if (verificarArquivoVazio()) {
+            if (verificarCamposVazios()) {
+                if (verificarNomeArquivoVazio()) {
+                    let campos = {
+                        caminho: caminhoArquivo.value,
+                        altura: colunaAltura.value,
+                        intensidade: colunaIntensidade.value,
+                        duracao: colunaDuracao.value,
+                        nomeArquivo: nomeArquivo.value
+                    }
+                    ipcRenderer.send('converter', JSON.stringify(campos))
+                } else {
+                    ipcRenderer.send('aviso-nome-arquivo-vazio')
                 }
-                ipcRenderer.send('converter', JSON.stringify(campos))
             } else {
-                ipcRenderer.send('aviso-nome-arquivo-vazio')
+                ipcRenderer.send('aviso-campos-vazios')
             }
         } else {
-            ipcRenderer.send('aviso-campos-vazios')
+            ipcRenderer.send('aviso-arquivo-vazio')
         }
-    } else {
-        ipcRenderer.send('aviso-arquivo-vazio')
     }
+
 }

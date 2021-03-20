@@ -1,26 +1,25 @@
 # -*- coding: utf-8 -*-
 
-import sys, json, csv, os, subprocess
+import sys, json, csv, os, subprocess, pathlib
 from shutil import copyfile
 
-def call_csvmidi(filename):
-	os.chdir('./midicsv-1.1') # Diretorio do programa
-	# print(os.getcwd())
+def call_csvmidi(filesPath):
+	os.chdir('././midicsv-1.1') # Diretorio do programa
 
-	outfd = open('../src/files/{}.mid'.format(filename), 'w+') # Grava o output em arquivo
+	outfd = open('{}.mid'.format(filesPath), 'w+') # Grava o output em arquivo
 	errfd = open('errMidi.txt', 'w+') # Grava o log de erros
 
 	# Executando o programa
-	subprocess.call(['csvmidi', '-v', '../src/files/' + filename + '.csv'], stdout = outfd, stderr = errfd)
+	subprocess.call(['csvmidi', '-v', '{}.csv'.format(filesPath)], stdout = outfd, stderr = errfd)
 
 	# Fechando os arquivos
 	outfd.close()
 	errfd.close()
 
 
-def write_in_csv_file(list_height, list_intensity, list_duration, filename):
+def write_in_csv_file(list_height, list_intensity, list_duration, filesPath):
 
-	with open('./src/files/{}.csv'.format(filename), 'a', newline='') as csv_template:
+	with open('{}.csv'.format(filesPath), 'a', newline='') as csv_template:
 		writer = csv.writer(csv_template, delimiter=',')
 
 		i = 0
@@ -93,16 +92,16 @@ def transform_data(filename, column):
 	return new_list_data
 
 
-def edit_header_template(output_filename):
-	copyfile('././midicsv-1.1/header_template.csv', './src/files/{}.csv'.format(output_filename))
+def edit_header_template(filesPath, output_filename):
+	copyfile('././midicsv-1.1/header_template.csv', '{}.csv'.format(filesPath))
 
-	file = open('./src/files/{}.csv'.format(output_filename))
+	file = open('{}.csv'.format(filesPath))
 	lines = file.readlines()
 	file.close()
 
 	new_line = lines[2].replace('FIREBALLS', output_filename)
 	
-	with open('./src/files/{}.csv'.format(output_filename), 'w') as file:
+	with open('{}.csv'.format(filesPath), 'w') as file:
 		for i, line in enumerate(lines):
 			if i == 2:
 				file.writelines(new_line)
@@ -175,8 +174,12 @@ else:
 
 output_filename = fields['nomeArquivo'] # Nome do arquivo de saida
 
-edit_header_template(output_filename) # Editando o template do cabecalho com o nome do arquivo de saida
+filesPath = str(pathlib.Path(__file__).parent.parent.absolute())
 
-write_in_csv_file(list_height, list_intensity, list_duration, output_filename) # Escrevendo o arquivo a ser convertido
+filesPath = os.path.join(filesPath, 'files', output_filename)
 
-call_csvmidi(output_filename) # Chamando o programa conversor csvmidi
+edit_header_template(filesPath, output_filename) # Editando o template do cabecalho com o nome do arquivo de saida
+
+write_in_csv_file(list_height, list_intensity, list_duration, filesPath) # Escrevendo o arquivo a ser convertido
+
+call_csvmidi(filesPath) # Chamando o programa conversor csvmidi
