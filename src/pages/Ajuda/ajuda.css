@@ -16,6 +16,8 @@
 .section-title {
     display: flex;
     align-items: center;
+
+    padding: 10px;
 }
 
 .section-icon {
@@ -37,10 +39,37 @@ section p, ul {
     line-height: 170%;
 }
 
+h3 {
+    padding: 5px;
+}
+
+#parametros {
+    display: none;
+
+    padding: 15px;
+}
+
+#transformacao-dados {
+    display: none;
+
+    padding: 15px;
+}
+
 #img-normalizacao {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#campos-entrada {
+    display: none;
+}
+
+.arrow-sign {
+    width: 20px;
+    height: 20px;
+
+    margin-left: 10px;
 }
 
 .rodape {

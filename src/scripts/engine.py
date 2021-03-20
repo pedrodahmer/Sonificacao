@@ -124,6 +124,7 @@ def fill_const_duration(list_duration, length):
 		list_duration.append(499)
 	return list_duration
 
+
 # Lendo o JSON vindo da aplicacao electron
 fields = sys.stdin.readlines()
 fields = json.loads(fields[0])
