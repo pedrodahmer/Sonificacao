@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import sys, json, csv, os, subprocess, pathlib
-from shutil import copyfile
+from shutil import copy
 
 sys.stdout.reconfigure(encoding='utf-8')
 
@@ -99,7 +99,7 @@ def transform_data(filename, column):
 
 
 def edit_header_template(filesPath, output_filename):
-	copyfile('././midicsv-1.1/header_template.csv', '{}.csv'.format(filesPath))
+	copy('././midicsv-1.1/header_template.csv', '{}.csv'.format(filesPath))
 
 	file = open('{}.csv'.format(filesPath))
 	lines = file.readlines()
