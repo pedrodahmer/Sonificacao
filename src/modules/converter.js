@@ -73,6 +73,20 @@ window.onload = function() {
         return true
     }
 
+    function limparCampos () {
+        caminhoArquivo.value = ''
+        toggleBtnAltura.checked = false
+        toggleBtnIntensidade.checked = false
+        toggleBtnDuracao.checked = false
+        colunaAltura.disabled = true
+        colunaAltura.value = ''
+        colunaIntensidade.disabled = true
+        colunaIntensidade.value = ''
+        colunaDuracao.disabled = true
+        colunaDuracao.value = ''
+        nomeArquivo.value = ''        
+    }
+
     btnConverter.onclick = () => {
 
         if (verificarArquivoVazio()) {
@@ -95,6 +109,8 @@ window.onload = function() {
         } else {
             ipcRenderer.send('aviso-arquivo-vazio')
         }
+
+        limparCampos()
     }
 
 }

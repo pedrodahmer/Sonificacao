@@ -3,6 +3,8 @@
 import sys, json, csv, os, subprocess, pathlib
 from shutil import copyfile
 
+sys.stdout.reconfigure(encoding='utf-8')
+
 def call_csvmidi(filesPath):
 	os.chdir('././midicsv-1.1') # Diretorio do programa
 
@@ -70,9 +72,8 @@ def get_column_of_csv(filename, column):
 			for row in reader:
 				yield int(float(row[column]))
 		except:
-			print('Algum coluina não foi reconhecida! Verifique se elas estão escritas corretamente e tente novamente!')
-			return False
-			
+			print('Alguma coluna não foi reconhecida! Verifique se elas estão escritas corretamente e tente outra vez!')
+			exit()
 
 
 def transform_data(filename, column):
@@ -88,7 +89,7 @@ def transform_data(filename, column):
 	new_min = 36
 
 	transform_list_data = map(lambda x: ((x - original_min) / (original_max - original_min))
-								 * (new_max - new_min) + new_min, list_data)
+								* (new_max - new_min) + new_min, list_data)
 
 	new_list_data = list(transform_list_data)
 

@@ -9,7 +9,7 @@ const {
 
 const { PythonShell } = require('python-shell')
 
-// require('electron-reload')(__dirname)
+require('electron-reload')(__dirname)
 
 let ultimoArquivoAdicionado = ''
 
@@ -139,25 +139,30 @@ ipcMain.on('converter', (event, args) => {
 
   let campos = JSON.parse(args)
 
-  converter.on('message', function(message){
-    console.log(message + " pedrao")
+  converter.on('message', function(message) {
+    if (message) {
+      console.log(message)
+      dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
+        title: 'Aviso!',
+        type: 'warning',
+        message: message,
+      })
+    } else {
+      const result = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), {
+        title: 'Sucesso!',
+        type: 'info',
+        message: 'Conversão concluída! Deseja reproduzir a sonificação agora?',
+        buttons: ['Sim', 'Não'],
+      })
+      if (result == 0) {
+        ultimoArquivoAdicionado = campos['nomeArquivo']
+        BrowserWindow.getFocusedWindow().loadFile(`${__dirname}/pages/Reproducao/reproducao.html`)
+      }
+    }
   })
 
   converter.end(function(err) {
-    if (err) {
-      throw err
-    }
-    console.log('finished')
-    const result = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), {
-      title: 'Sucesso!',
-      type: 'info',
-      message: 'Conversão concluída! Deseja reproduzir a sonificação agora?',
-      buttons: ['Sim', 'Não'],
-    })
-    if (result == 0) {
-      ultimoArquivoAdicionado = campos['nomeArquivo']
-      BrowserWindow.getFocusedWindow().loadFile(`${__dirname}/pages/Reproducao/reproducao.html`)
-    }
+    if (err) throw err
   })
 
 })
