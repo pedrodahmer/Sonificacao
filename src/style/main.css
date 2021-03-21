@@ -11,11 +11,13 @@
 }
 
 #logo {
-  width: 40%;
+  width: 30%;
 }
 
 #title {
-  font-size: 30px;
+  font-size: 25px;
+  box-shadow: 0px 1px #EEE;
+  padding: 5px;
 }
 
 p {

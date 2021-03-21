@@ -190,3 +190,5 @@ edit_header_template(filesPath, output_filename) # Editando o template do cabeca
 write_in_csv_file(list_height, list_intensity, list_duration, filesPath) # Escrevendo o arquivo a ser convertido
 
 call_csvmidi(filesPath) # Chamando o programa conversor csvmidi
+
+print('OK')

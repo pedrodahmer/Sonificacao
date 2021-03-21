@@ -140,24 +140,25 @@ ipcMain.on('converter', (event, args) => {
   let campos = JSON.parse(args)
 
   converter.on('message', function(message) {
-    if (message) {
+    if (message != "OK") {
       console.log(message)
       dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
         title: 'Aviso!',
         type: 'warning',
         message: message,
       })
-    } else {
-      const result = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), {
+    } else if (message == "OK") {
+      dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
         title: 'Sucesso!',
         type: 'info',
         message: 'Conversão concluída! Deseja reproduzir a sonificação agora?',
         buttons: ['Sim', 'Não'],
+      }).then(result => {
+        if (result.response === 0) {
+          ultimoArquivoAdicionado = campos['nomeArquivo']
+          BrowserWindow.getFocusedWindow().loadFile(`${__dirname}/pages/Reproducao/reproducao.html`)
+        }
       })
-      if (result == 0) {
-        ultimoArquivoAdicionado = campos['nomeArquivo']
-        BrowserWindow.getFocusedWindow().loadFile(`${__dirname}/pages/Reproducao/reproducao.html`)
-      }
     }
   })
 

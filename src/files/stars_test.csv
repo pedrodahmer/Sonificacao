@@ -1,6 +1,6 @@
 0, 0, Header, 1, 2, 480
 1, 0, Start_track
-1, 0, Title_t, "teste_estrelas"
+1, 0, Title_t, "stars_test"
 1, 0, Time_signature, 4, 2, 24, 8
 1, 0, Key_signature, 0, "major"
 1, 0, Tempo, 600000

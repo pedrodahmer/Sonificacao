@@ -15,7 +15,9 @@ window.onload = function() {
     visualizador.config = {
         noteHeight: 6,
         activeNoteRGB: '255, 0, 0',
-        scrollType: 1
+        scrollType: 1,
+        minPitch: 36,
+        maxPitch: 84
     }
 
     opcaoVisualizador.addEventListener('click', () => {
@@ -23,10 +25,10 @@ window.onload = function() {
 
         if ( opcao.value == 'waterfall' ) {
             visualizador.type = 'waterfall'
-            visualizador.config = { noteHeight: 8, activeNoteRGB: '255, 0, 0', scrollType: 1 }
+            visualizador.config = { noteHeight: 8, activeNoteRGB: '255, 0, 0', scrollType: 1, minPitch: 36, maxPitch: 84 }
         } else {
             visualizador.type = 'staff'
-            visualizador.config = { noteHeight: 8, activeNoteRGB: '255, 0, 0', scrollType: 1 }
+            visualizador.config = { noteHeight: 8, activeNoteRGB: '255, 0, 0', scrollType: 1, minPitch: 36, maxPitch: 84 }
         }
     })
 

@@ -100,6 +100,7 @@ window.onload = function() {
                         nomeArquivo: nomeArquivo.value
                     }
                     ipcRenderer.send('converter', JSON.stringify(campos))
+                    limparCampos()
                 } else {
                     ipcRenderer.send('aviso-nome-arquivo-vazio')
                 }
@@ -109,8 +110,6 @@ window.onload = function() {
         } else {
             ipcRenderer.send('aviso-arquivo-vazio')
         }
-
-        limparCampos()
     }
 
 }

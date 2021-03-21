@@ -17,22 +17,24 @@
 
 section {
   margin-top: 25px;
-  box-shadow: 2px 2px #ccc;
-  border-radius: 2px;
+  box-shadow: 3px 3px #DDD;
+  border-radius: 5px;
 }
 
 section p,
 ul {
   padding: 10px;
+  
   font-size: 18px;
   line-height: 170%;
+  text-indent: 2em;
 }
 
 .section-title {
   display: flex;
   align-items: center;
 
-  margin-bottom: 15px;
+  padding: 10px;
 }
 
 .section-icon {
@@ -76,5 +78,5 @@ ul {
   display: flex;
   flex-direction: column;
 
-  margin-left: 40px;
+  margin-left: 30px;
 }

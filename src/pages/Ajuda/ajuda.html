@@ -22,9 +22,9 @@
                 <img src="../../assets/icons/manual-icon.svg" alt="" class="section-icon">
                 <h2>  Como uso o programa? </h2>
             </div>
-            <p> 
+            <p id="p-title"> 
                 A sonificação de dados realizada por esta aplicação se dá a partir da entrada de um 
-                conjunto de dados em formato .csv (Comma Separated Values) de sua escolha. 
+                conjunto de dados em formato <code>.csv</code> (Comma Separated Values) de sua escolha. 
                 Para compreender a parametrização dos dados vamos entender melhor cada propriedade musical 
                 envolvida nas próximas seções. 
             </p>
@@ -38,19 +38,19 @@
                 </div>
 
                 <div id="parametros">
-                    <h3> Sonificação das alturas </h3>
+                    <h3> Sonificação das alturas <span>&#127932;</span> </h3> 
                     <p>
                         A altura da música diz respeito à percepção do ouvido humano em relação a 
                         frequência de uma dada nota musical, de forma que, quanto mais alta a frequência 
                         mais agudo o som é, ao passo que quanto mais baixa a frequência mais grave é o som.
                     </p>
         
-                    <h3> Sonificação das intensidades </h3>
+                    <h3> Sonificação das intensidades <span>&#128266;</span></h3>
                     <p>
                         A intensidade diz respeito à força do som. Em outras palavras, é o volume da música.
                     </p>
         
-                    <h3> Sonificação das durações </h3>
+                    <h3> Sonificação das durações <span>&#9203;</span> </h3>
                     <p>
                         A duração do som define o tempo que uma determinada vibração sonora permanece em nossos ouvidos.
                     </p>
@@ -67,32 +67,33 @@
                 
                 <div id="transformacao-dados">
                     <p>
-                        O padrão MIDI trabalha com uma escala de valores que variam de 0 a 127. 
+                        O padrão <i>MIDI</i> trabalha com uma escala de valores que variam de 0 a 127. 
                         Para que os valores do seu conjunto de dados sejam satisfeitos dentro 
                         desta escala o programa aplica uma normalização de dados. A seguinte fórmula é utilizada:
                     </p>
 
-                    <div id="img-normalizacao"> 
-                        <img src="../../assets/images/img-normalizacao.PNG" alt="Normalização MinMax dos Dados"> 
-                    </div>
+                    <figure id="img-normalizacao">
+                        <img src="../../assets/images/normalizacao-formula.PNG" alt="Normalização MinMax dos Dados">
+                        <figcaption> <i> Normalização de Dados MinMax </i> </figcaption>
+                    </figure>
 
                     <p>
                         Como convenção, optou-se por restringir limites mínimos e máximos para a 
-                        transformação das variáveis dentro da escala MIDI. Então, o intervalo definido
-                        para a fórmula de normalização vai de 36 (new_min) até 84 (new_max). 
+                        transformação das variáveis dentro da escala <i>MIDI</i>. Então, o intervalo definido
+                        para a fórmula de normalização vai de 36 (<i>new_min</i>) até 84 (<i>new_max</i>). 
                         Essa decisão parte do fato de que valores muito próximos aos extremos da escala 
-                        MIDI original (0 a 127), são muito graves ou muito agudos para uma reprodução 
+                        <i>MIDI</i> original (0 a 127), são muito graves ou muito agudos para uma reprodução 
                         satisfatória na maioria dos dispositivos de áudio, o que comprometeria percepção 
                         auditiva dos sons e, por conseguinte a interpretação da sonificação.
                     </p>
 
                     <p>
-                        Assim, para a altura da música os dados transformados são utilizados diretamente, 
+                        Assim, para a <strong>altura</strong> da música os dados transformados são utilizados diretamente, 
                         ou seja, cada variável transformada do seu conjunto de dados diz respeito a um 
-                        valor de altura de uma determinada nota. Já para a intensidade, tomamos 60 como 
-                        um valor próximo ao centro da escala MIDI, de maneira que, se a variável transformada 
+                        valor de altura de uma determinada nota. Já para a <strong>intensidade</strong>, tomamos 60 como 
+                        um valor próximo ao centro da escala <i>MIDI</i>, de maneira que, se a variável transformada 
                         for igual ou maior que esta média, atribuímos o valor 80 para a intensidade da nota, 
-                        caso contrário atribuímos o valor 40. Por fim, a duração correspondente a variável 
+                        caso contrário atribuímos o valor 40. Por fim, a <strong>duração</strong> correspondente a variável 
                         transformada também passa por uma avaliação de critérios de acordo com o intervalo 
                         em que se encontra, conforme a seguir:
                     </p>
@@ -106,7 +107,7 @@
 
                     <p>
                         A duração se apresenta de forma incrementada na sua coluna correspondente 
-                        dentro do arquivo .mid, ou seja, para cada nota a sua duração inicia seguindo o 
+                        dentro do arquivo <code>.mid</code>, ou seja, para cada nota a sua duração inicia seguindo o 
                         valor da duração da nota anterior + 1, e termina no instante de duração igual à 
                         duração da nota anterior + a duração calculada para a variável atual + 1.
                     </p>
@@ -125,7 +126,7 @@
                 
                     <p>
                         Na tela de conversão dos dados você encontrará 4 campos de entrada. 
-                        O primeiro campo é direcionado para a escolha do arquivo .csv 
+                        O primeiro campo é direcionado para a escolha do arquivo <code>.csv</code> 
                         contendo o seu conjunto de dados. Você informará ao programa 
                         o caminho deste arquivo no seu sistema de arquivos.
                     </p>
@@ -134,7 +135,7 @@
                         Os três campos seguintes são os campos dos parâmetros de altura, intensidade e duração, 
                         respectivamente. Nestes campos você irá inserir o nome do atributo (ou da coluna) 
                         do seu conjunto de dados que deseja para corresponder ao parâmetro musical referente. 
-                        Para inserir esta entrada você deverá selecionar o toggle button que se encontra ao 
+                        Para inserir esta entrada você deverá selecionar o <code>toggle button</code> que se encontra ao 
                         lado do campo de entrada do parâmetro. Portanto, você não precisa entrar necessariamente 
                         com os três parâmetros. Se você quiser escolher apenas a altura, por exemplo, o sistema 
                         atribui valores constantes aos outros parâmetros para você analisar isoladamente o 
@@ -143,7 +144,7 @@
 
                     <p>
                         Por fim, você pode escolher o nome dos arquivos de saída, ou seja, o nome do arquivo 
-                        .csv que será escrito para conversão e do arquivo .mid, que é a sonificação propriamente dita.
+                        .csv que será escrito para conversão e do arquivo <code>.mid</code>, que é a sonificação propriamente dita.
                     </p>
 
                     <p>
@@ -152,11 +153,11 @@
                     </p>
 
                     <ul>
-                        <li> Ser um arquivo .csv, preferencialmente com vírgulas como separador. </li>
+                        <li> Ser um arquivo <code>.csv</code>, preferencialmente com vírgulas como separador. </li>
                         <li> A primeira linha do arquivo deve ser referente aos nomes das colunas. </li>
                         <li> As colunas devem possuir o mesmo tamanho. </li>
                         <li> Os dados devem ser numéricos. </li>
-                        <li> Não podem haver dados faltantes. Neste caso, sugerimos que os dados 
+                        <li> Não podem haver dados faltantes <span>&#128721;</span>. Neste caso, sugerimos que os dados 
                             faltantes sejam tratados como 0 (zero), caso isso não comprometa a 
                             natureza dos dados. Portanto, em cenários como esse você precisará 
                             editar o arquivo para eliminar ou tratar os dados faltantes e 
@@ -165,7 +166,7 @@
 
                     <p>
                         Por fim, se a sonificação for bem sucedida você poderá 
-                        reproduzi-la na tela de reprodução e realizar suas análises.
+                        reproduzi-la na tela de reprodução e realizar suas análises. <span>&#128516;</span>
                     </p>
                 </div>
             </div>
@@ -176,7 +177,14 @@
                 <img src="../../assets/icons/bug-report-icon.svg" alt="" class="section-icon"></img>
                 <h2>  Reportar algum erro </h2>
             </div>
-            <p> contato@email.com </p>
+            <p> Encontrou algum erro ou falha da aplicação <span>&#128556;</span>?
+                Por favor, entre em contato via e-email com o time de desenvolvimento.
+            </p>
+            <ul>
+                <li> Pedro Dahmer - pedrohd@ufcspa.edu.br </li>
+                <li> Rafael Martinenco - rafaelgm@ufcspa.edu.br </li>
+                <li> Rodrigo Duarte - rodrigodf@ufcspa.edu.br </li>
+            </ul>
         </section>
 
         <div class="rodape">

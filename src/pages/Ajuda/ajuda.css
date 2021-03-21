@@ -1,5 +1,5 @@
 .container {
-  padding: 28px;
+  padding: 50px;
 }
 
 #title {
@@ -27,50 +27,83 @@
   margin-right: 10px;
 }
 
-section {
-  margin-top: 25px;
-  box-shadow: 2px 2px #ccc;
-  border-radius: 2px;
+#p-title {
+  padding: 20px;
 }
 
-section p,
-ul {
+section {
+  margin-top: 25px;
+  box-shadow: 3px 3px #DDD;
+  border-radius: 5px;
+}
+
+section p {
   padding: 10px;
+
   font-size: 18px;
   line-height: 170%;
+  text-indent: 2em;
 }
 
 h3 {
   padding: 5px;
 }
 
+code {
+  background-color: #EEE;
+  border-radius: 3px;
+  font-family: courier, monospace;
+  padding: 0px 3px;
+}
+
 #parametros {
   display: none;
 
-  padding: 15px;
+  padding: 20px;
 }
 
 #transformacao-dados {
   display: none;
 
-  padding: 15px;
+  padding: 20px;
 }
 
 #img-normalizacao {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  box-shadow: 0px 1.5px #EEE;
+
+  margin-bottom: 10px;
+}
+
+figcaption {
+  padding-bottom: 5px;
+
+  font-size: 14px;
 }
 
 #campos-entrada {
   display: none;
+
+  padding: 20px;
 }
 
 .arrow-sign {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 
   margin-left: 10px;
+
+  transition: background, border-radius, padding 0.25s;
+}
+
+.arrow-sign:hover {
+  background: #EEE;
+  border-radius: 100%;
+  padding: 2px;
 }
 
 .rodape {
@@ -103,5 +136,11 @@ ul {
   display: flex;
   flex-direction: column;
 
+  font-size: 18px;
+  line-height: 170%;
+
   margin-left: 40px;
+  padding: 5px;
+
+  list-style: circle;
 }

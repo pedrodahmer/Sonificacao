@@ -1,5 +1,5 @@
 {
-  "name": "SonificacaoApp",
+  "name": "AppSonificacao",
   "version": "1.0.0",
   "description": "Sonificacao de Dados - Projeto ESW II",
   "main": "./src/main.js",
@@ -38,7 +38,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "SonificacaoApp"
+            "name": "AppSonificacao"
           }
         },
         {
