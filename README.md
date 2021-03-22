@@ -32,7 +32,7 @@ A normalização dos dados se deve pelo fato de o padrão MIDI lidar com valores
 
 ### Critérios para a intensidade :sound:
 
-Quando a variável transformada da for igual ou maior que a média 60, atribuímos o valor 80 para corresponder a intensidade da nota musical referente a esta variável.
+Quando a variável transformada for igual ou maior que a média 60, atribuímos o valor 80 para corresponder a intensidade da nota musical referente a esta variável.
 Do contrário, ou seja, quando a variável transformada for menor que 60, atribui-se o valor 40 de intensidade.
 
 ### Critérios para a duração :hourglass_flowing_sand:
@@ -48,7 +48,7 @@ A duração se apresenta de forma incrementada na sua coluna correspondente dent
 
 Com os dados transformados e armazenados em listas, criamos uma cópia de um arquivo .csv chamado __header_template.csv__, que encontra-se dentro do diretório __midicsv-1.1__.
 Este arquivos é o cabeçalho do arquivo .mid, contendo alguns metadados importantes. A partir deste template escrevemos o restante do arquivo .csv com os dados transformados,
-seguindo a semâmtica do padrão MIDI. Quando este arquivo está escrito, a __engine.py__ chama uma função que executa o programa csvmidi para a conversão dos formatos. Tem-se então o processo concluído.
+seguindo a semântica do padrão MIDI. Quando este arquivo está escrito, a __engine.py__ chama uma função que executa o programa csvmidi para a conversão dos formatos. Tem-se então o processo concluído.
 
 ## Reprodução e visualização da sonificação :headphones:
 
