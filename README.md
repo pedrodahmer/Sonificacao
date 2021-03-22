@@ -28,7 +28,7 @@ Assim, uma vez que os dados são informados eles irão para uma fase de pré-pro
 da biblioteca padrão do Python, como o módulo json para deserializar o objeto JSON contendo as entradas do usuário e o módulo csv para manipular os arquivos necessários.
 Os dados informados pelo usuário passam por uma transformação, mais especificamente uma normalização, seguindo a fórmula abaixo:
 
-[Normalização de Dados MinMax](https://github.com/pedrodahmer/Sonificacao/blob/master/src/assets/images/normalizacao-formula.PNG)
+![](https://github.com/pedrodahmer/Sonificacao/blob/master/src/assets/images/normalizacao-formula.PNG)
 
 A normalização dos dados se deve pelo fato de o padrão MIDI lidar com valores que variam de 0 a 127.  Definiu-se por convenção a adoção de um intervalor personalizado que varia entre 36 e 84, com média igual a 60, uma faixa de valores mais adequada dentro da escala MIDI que evita notas com alturas muito extremas (graves ou agudas demais). Dessa forma os dados são transformados para se adequarem dentro deste intervalo, de forma que possuímos diferentes critérios para os parâmetro de acordo com o valor resultante da transformação, exceto o parâmetro de altura que é diretamente o mesmo valor resultante da transformação.
 
@@ -59,13 +59,11 @@ Por fim, podemos reproduzir o arquivo .mid resultante e acompanhar uma represent
 
 ## Dependências usadas por esta aplicação
 
-- html-midi-player
-- @magenta/music
-- python-shell
-- electron-reload
-- electron-squirrel-startup
-- @fortawesome/fontawesome-free
+- [html-midi-player](https://www.npmjs.com/package/html-midi-player)
+- [@magenta/music](https://magenta.github.io/magenta-js/music/)
+- [python-shell](https://www.npmjs.com/package/python-shell)
+- [electron-reload](https://www.npmjs.com/package/electron-reload)
 
 ## Ideias futuras
 
-- [] Biblioteca de arquivos
+- [ ] Biblioteca de arquivos
