@@ -46,9 +46,7 @@ A duração correspondente a variável transformada também passa por uma avalia
 
 A duração se apresenta de forma incrementada na sua coluna correspondente dentro do arquivo .mid, ou seja, para cada nota a sua duração inicia seguindo o valor da duração da nota anterior + 1, e termina no instante de duração igual à duração da nota anterior + a duração calculada para a variável atual + 1.
 
-Com os dados transformados e armazenados em listas, criamos uma cópia de um arquivo .csv chamado __header_template.csv__, que encontra-se dentro do diretório __midicsv-1.1__.
-Este arquivos é o cabeçalho do arquivo .mid, contendo alguns metadados importantes. A partir deste template escrevemos o restante do arquivo .csv com os dados transformados,
-seguindo a semântica do padrão MIDI. Quando este arquivo está escrito, a __engine.py__ chama uma função que executa o programa csvmidi para a conversão dos formatos. Tem-se então o processo concluído.
+Com os dados transformados e armazenados em listas, criamos uma cópia de um arquivo .csv chamado __header_template.csv__. Este arquivos é o cabeçalho do arquivo .mid, contendo alguns metadados importantes. A partir deste template escrevemos o restante do arquivo .csv com os dados transformados, seguindo a semântica do padrão MIDI. Quando este arquivo está escrito, a __engine.py__ chama uma função que executa o programa csvmidi para a conversão dos formatos. Tem-se então o processo concluído.
 
 ## Reprodução e visualização da sonificação :headphones:
 
@@ -64,3 +62,4 @@ Por fim, podemos reproduzir o arquivo .mid resultante e acompanhar uma represent
 ## Ideias para o futuro :bulb:
 
 - [ ] Biblioteca de arquivos
+- [ ] Conversão .mid para .csv
