@@ -23,3 +23,32 @@ na entrada dos dados, que futuramente poderão ser retiradas com o melhoramento 
 - Todas as colunas informadas possuem o mesmo tamanho
 - Os dados são de natureza numérica
 - Não podem haver dados faltantes
+
+Assim, uma vez que os dados são informados eles irão para uma fase de pré-processamento, realizada pelo script engine.py. Neste script, utilizamos alguns módulos
+da biblioteca padrão do Python, como o módulo json para deserializar o objeto JSON contendo as entradas do usuário e o módulo csv para manipular os arquivos necessários.
+Os dados informados pelo usuário passam por uma transformação, mais especificamente uma normalização, seguindo a fórmula abaixo:
+
+![Normalização de Dados MinMax](https://github.com/pedrodahmer/Sonificacao/blob/master/src/assets/images/normalizacao-formula.PNG)
+
+A normalização dos dados se deve pelo fato de o padrão MIDI lidar com valores que variam de 0 a 127.  Definiu-se por convenção a adoção de um intervalor personalizado que varia entre 36 e 84, com média igual a 60, uma faixa de valores mais adequada dentro da escala MIDI que evita notas com alturas muito extremas (graves ou agudas demais). Dessa forma os dados são transformados para se adequarem dentro deste intervalo, de forma que possuímos diferentes critérios para os parâmetro de acordo com o valor resultante da transformação, exceto o parâmetro de altura que é diretamente o mesmo valor resultante da transformação.
+
+### Critérios para a intensidade
+
+Quando a variável transformada da for igual ou maior que a média 60, atribuímos o valor 80 para corresponder a intensidade da nota musical referente a esta variável.
+Do contrário, ou seja, quando a variável transformada for menor que 60, atribui-se o valor 40 de intensidade.
+
+### Critérios para a duração
+
+A duração correspondente a variável transformada também passa por uma avaliação de critérios de acordo com o intervalo em que se encontra, conforme a seguir:
+
+- Entre 36 e 48 a duração atribuída é de 249
+- Entre 49 e 60 a duração atribuída é de 499
+- Entre 61 e 72 a duração atribuída é de 999
+- Entre 73 e 84 a duração atribuída é de 1999
+
+A duração se apresenta de forma incrementada na sua coluna correspondente dentro do arquivo .mid, ou seja, para cada nota a sua duração inicia seguindo o valor da duração da nota anterior + 1, e termina no instante de duração igual à duração da nota anterior + a duração calculada para a variável atual + 1.
+
+Com os dados transformados e armazenados em listas, criamos uma cópia de um arquivo .csv chamado header_template.csv, que encontra-se dentro do diretório midicsv-1.1.
+Este arquivos é o cabeçalho do arquivo .mid, contendo alguns metadados importantes. A partir deste template escrevemos o restante do arquivo .csv com os dados transformados,
+seguindo a semâmtica do padrão MIDI. Quando este arquivo está escrito, a engine.py chama uma função que executa o programa csvmidi para a conversão dos formatos. Tem-se então
+o processo concluído.
