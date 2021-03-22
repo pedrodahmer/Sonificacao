@@ -4,7 +4,7 @@ Este projeto foi desenvolvido para a disciplina de Engenharia de Software II do 
 da UFCSPA (Universidade Federal de Ciências da Saúde de Porto Alegre) durante o semestre letivo de 2020/2. O propósito
 geral da aplicação é converter arquivos .csv em arquivos no formato .mid, isto é, sonificar dados. A sonificação resultante
 busca fornecer uma nova forma de interpretação dos dados a partir dos parâmetros musicais de __altura__, __intensidade__ e __duração__.
-
+Esta aplicação foi construída usando o framework Javascript [Electron.js](https://github.com/electron/electron) e a linguagem de programação [Python](https://www.python.org/).
 
 ## Conversão dos formatos
 
@@ -28,7 +28,7 @@ Assim, uma vez que os dados são informados eles irão para uma fase de pré-pro
 da biblioteca padrão do Python, como o módulo json para deserializar o objeto JSON contendo as entradas do usuário e o módulo csv para manipular os arquivos necessários.
 Os dados informados pelo usuário passam por uma transformação, mais especificamente uma normalização, seguindo a fórmula abaixo:
 
-![Normalização de Dados MinMax](https://github.com/pedrodahmer/Sonificacao/blob/master/src/assets/images/normalizacao-formula.PNG)
+[Normalização de Dados MinMax](https://github.com/pedrodahmer/Sonificacao/blob/master/src/assets/images/normalizacao-formula.PNG)
 
 A normalização dos dados se deve pelo fato de o padrão MIDI lidar com valores que variam de 0 a 127.  Definiu-se por convenção a adoção de um intervalor personalizado que varia entre 36 e 84, com média igual a 60, uma faixa de valores mais adequada dentro da escala MIDI que evita notas com alturas muito extremas (graves ou agudas demais). Dessa forma os dados são transformados para se adequarem dentro deste intervalo, de forma que possuímos diferentes critérios para os parâmetro de acordo com o valor resultante da transformação, exceto o parâmetro de altura que é diretamente o mesmo valor resultante da transformação.
 
@@ -52,3 +52,20 @@ Com os dados transformados e armazenados em listas, criamos uma cópia de um arq
 Este arquivos é o cabeçalho do arquivo .mid, contendo alguns metadados importantes. A partir deste template escrevemos o restante do arquivo .csv com os dados transformados,
 seguindo a semâmtica do padrão MIDI. Quando este arquivo está escrito, a engine.py chama uma função que executa o programa csvmidi para a conversão dos formatos. Tem-se então
 o processo concluído.
+
+## Reprodução e visualização da sonificação
+
+Por fim, podemos reproduzir o arquivo .mid resultante e acompanhar uma representação visual da sonificação. A representação visual pode ser um cascata de notas em um piano ou uma partitura. Usamos o pacote npm [html-midi-player](https://www.npmjs.com/package/html-midi-player) para a esta funcionalidade. Este pacote, por sua vez, utiliza recursos do [Magenta.js](https://github.com/magenta/magenta-js).
+
+## Dependências usadas por esta aplicação
+
+- html-midi-player
+- @magenta/music
+- python-shell
+- electron-reload
+- electron-squirrel-startup
+- @fortawesome/fontawesome-free
+
+## Ideias futuras
+
+- [] Biblioteca de arquivos
