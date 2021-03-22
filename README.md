@@ -61,6 +61,6 @@ Por fim, podemos reproduzir o arquivo .mid resultante e acompanhar uma represent
 - [python-shell](https://www.npmjs.com/package/python-shell)
 - [electron-reload](https://www.npmjs.com/package/electron-reload)
 
-## Ideias futuras :bulb:
+## Ideias para o futuro :bulb:
 
 - [ ] Biblioteca de arquivos
